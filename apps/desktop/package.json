@@ -7,7 +7,7 @@
 	"resources": "src/resources",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/superset-sh/superset.git"
+		"url": "https://github.com/quueli/superset-windows.git"
 	},
 	"author": {
 		"name": "Superset",
@@ -26,6 +26,8 @@
 		"build": "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --publish never",
 		"prepackage": "bun run copy:native-modules && bun run validate:native-runtime",
 		"package": "electron-builder --config electron-builder.ts",
+		"patch:node-pty-win-spectre": "bun ../../scripts/patch-node-pty-spectre-windows.ts",
+		"preinstall:deps": "bun run patch:node-pty-win-spectre",
 		"install:deps": "electron-builder install-app-deps",
 		"release": "electron-builder --publish always",
 		"clean:dev": "rimraf ./node_modules/.dev",
