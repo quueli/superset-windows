@@ -4,7 +4,7 @@
 
 ### The Code Editor for AI Agents
 
-**Fork [quueli/superset-windows](https://github.com/quueli/superset-windows)** — Windows 10+ сборка десктопа, кроссплатформенный `postinstall`, job CI для Windows. Upstream: [superset-sh/superset](https://github.com/superset-sh/superset).
+**Fork [quueli/superset-windows](https://github.com/quueli/superset-windows)** — Windows 10+ desktop builds, cross-platform `postinstall`, and Windows CI workflows. Upstream: [superset-sh/superset](https://github.com/superset-sh/superset).
 
 [![GitHub stars](https://img.shields.io/github/stars/quueli/superset-windows?style=flat&logo=github)](https://github.com/quueli/superset-windows/stargazers)
 [![GitHub release](https://img.shields.io/github/v/release/quueli/superset-windows?style=flat&logo=github)](https://github.com/quueli/superset-windows/releases)
@@ -73,7 +73,7 @@ If it runs in a terminal, it runs on Superset
 
 | Requirement | Details |
 |:------------|:--------|
-| **OS** | **Windows 10+ x64** (сборка из этого форка). macOS / Linux — как у upstream; для Windows включите `git config --global core.longpaths true` перед клоном при ошибках длинных путей. |
+| **OS** | **Windows 10+ x64** (builds from this fork). macOS / Linux — same as upstream. On Windows, run `git config --global core.longpaths true` **before** cloning to avoid long-path errors. |
 | **Runtime** | [Bun](https://bun.sh/) v1.0+ |
 | **Version Control** | Git 2.20+ |
 | **GitHub CLI** | [gh](https://cli.github.com/) |

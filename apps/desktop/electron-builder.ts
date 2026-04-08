@@ -32,8 +32,8 @@ const config: Configuration = {
 	// Generate latest-mac.yml for auto-update (workflow handles actual upload)
 	publish: {
 		provider: "github",
-		owner: "quueli",
-		repo: "superset-windows",
+		owner: "superset-sh",
+		repo: "superset",
 	},
 
 	// Directories
