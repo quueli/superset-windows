@@ -268,11 +268,12 @@ jobs:
     environment: production
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      # Must run before checkout: clone fails on deep paths otherwise (MAX_PATH).
       - name: Enable Git long paths
         run: git config --global core.longpaths true
+
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup Bun
         id: setup-bun
