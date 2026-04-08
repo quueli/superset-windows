@@ -266,11 +266,25 @@ jobs:
     name: Build - Windows (x64)
     runs-on: windows-latest
     environment: production
+    # Applies to Git spawned by actions/checkout (Git 2.31+). Shell-only config is too late for checkout.
+    env:
+      GIT_CONFIG_COUNT: 1
+      GIT_CONFIG_KEY_0: core.longpaths
+      GIT_CONFIG_VALUE_0: "true"
 
     steps:
-      # Must run before checkout: clone fails on deep paths otherwise (MAX_PATH).
-      - name: Enable Git long paths
-        run: git config --global core.longpaths true
+      # OS + global config (redundant with env above; helps older Git / edge cases).
+      - name: Enable Windows long paths
+        shell: powershell
+        run: |
+          git config --global core.longpaths true
+          if (-not (Test-Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem')) { exit 0 }
+          try {
+            Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1 -Type DWord -Force -ErrorAction Stop
+            Write-Host 'LongPathsEnabled=1 set'
+          } catch {
+            Write-Host 'Registry LongPathsEnabled skipped (no permission):' $_.Exception.Message
+          }
 
       - name: Checkout code
         uses: actions/checkout@v4
